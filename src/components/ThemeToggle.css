@@ -1,0 +1,35 @@
+.theme-toggle {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  border: 1px solid var(--border-color);
+  background: var(--bg-glass);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  cursor: pointer;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  box-shadow: var(--shadow-md);
+}
+
+.theme-toggle:hover {
+  transform: scale(1.1);
+  box-shadow: var(--shadow-lg);
+  background: var(--bg-secondary);
+}
+
+.theme-toggle:active {
+  transform: scale(0.95);
+}
+
+@media (min-width: 768px) {
+  .theme-toggle {
+    width: 3.5rem;
+    height: 3.5rem;
+    font-size: 1.75rem;
+  }
+}
+

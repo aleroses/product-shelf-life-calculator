@@ -1,0 +1,94 @@
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-primary);
+  position: relative;
+  overflow-x: hidden;
+}
+
+.app::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(139, 92, 246, 0.1) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.app-header {
+  position: relative;
+  z-index: 10;
+  padding: 1.5rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--bg-glass);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+  gap: 1rem;
+}
+
+.app-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  background: linear-gradient(135deg, var(--accent-primary), #8b5cf6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.app-main {
+  position: relative;
+  z-index: 10;
+  flex: 1;
+  padding: 2rem 1rem;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.app-footer {
+  position: relative;
+  z-index: 10;
+  padding: 1.5rem 1rem;
+  text-align: center;
+  background: var(--bg-glass);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-top: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+}
+
+@media (min-width: 768px) {
+  .app-header {
+    padding: 2rem 2rem;
+  }
+
+  .app-title {
+    font-size: 2rem;
+  }
+
+  .app-main {
+    padding: 3rem 2rem;
+  }
+
+  .app-footer {
+    padding: 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .app-main {
+    padding: 4rem 2rem;
+  }
+}
