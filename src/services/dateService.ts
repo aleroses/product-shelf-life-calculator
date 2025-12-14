@@ -119,7 +119,7 @@ export const determineProductStatus = (
   if (percentage >= 80) {
     return {
       status: 'acceptable',
-      message: 'Recién producido - Aceptable',
+      message: 'Producto fresco - Aceptable',
     };
   }
   
