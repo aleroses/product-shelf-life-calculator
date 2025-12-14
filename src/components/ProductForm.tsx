@@ -23,6 +23,11 @@ export const ProductForm = () => {
     }
   };
 
+  const handleClearDates = () => {
+    dispatch({ type: 'SET_ELABORATION_DATE', payload: null });
+    dispatch({ type: 'SET_EXPIRATION_DATE', payload: null });
+  };
+
   return (
     <div className='product-form-container'>
       <div className='form-card'>
@@ -51,6 +56,15 @@ export const ProductForm = () => {
             value={state.dates.evaluationDate}
             onChange={handleEvaluationDateChange}
           />
+
+          <button
+            type='button'
+            onClick={handleClearDates}
+            className='clear-dates-button'
+            disabled={!state.dates.elaborationDate && !state.dates.expirationDate}
+          >
+            Limpiar fechas
+          </button>
         </div>
       </div>
 
@@ -58,3 +72,4 @@ export const ProductForm = () => {
     </div>
   );
 };
+
