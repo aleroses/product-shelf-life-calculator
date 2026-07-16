@@ -1,8 +1,6 @@
 import { differenceInDays, subDays, parse, format, isValid } from 'date-fns';
 import type { ProductDates, ShelfLifeCalculation, ProductStatus } from '../types';
 
-const DAYS_TO_SUBTRACT_FROM_EXPIRATION = 3;
-
 /**
  * Parsea una fecha en formato DD/MM/YYYY
  * Solo parsea fechas completas (con año de 4 dígitos) para evitar fechas inválidas
@@ -88,9 +86,10 @@ export const calculateTotalShelfLife = (
  */
 export const calculateRemainingDays = (
   expirationDate: Date,
-  evaluationDate: Date
+  evaluationDate: Date,
+  safetyMargin: number
 ): number => {
-  const adjustedExpirationDate = subDays(expirationDate, DAYS_TO_SUBTRACT_FROM_EXPIRATION);
+  const adjustedExpirationDate = subDays(expirationDate, safetyMargin);
   const remaining = differenceInDays(adjustedExpirationDate, evaluationDate);
   return Math.max(0, remaining); // No permitir valores negativos
 };
@@ -140,7 +139,8 @@ export const determineProductStatus = (
  * Calcula toda la información de vida útil del producto
  */
 export const calculateShelfLife = (
-  dates: ProductDates
+  dates: ProductDates,
+  safetyMargin: number
 ): ShelfLifeCalculation | null => {
   if (!dates.elaborationDate || !dates.expirationDate) {
     return null;
@@ -157,7 +157,8 @@ export const calculateShelfLife = (
 
   const remainingDays = calculateRemainingDays(
     dates.expirationDate,
-    dates.evaluationDate
+    dates.evaluationDate,
+    safetyMargin
   );
 
   const remainingPercentage = calculateRemainingPercentage(
