@@ -8,21 +8,24 @@
 }
 
 .app-header {
-  position: relative;
-  z-index: 10;
+  position: sticky;
+  top: 0;
+  z-index: 100;
   padding: 0.75rem 1rem;
   padding-top: max(0.75rem, env(safe-area-inset-top));
   padding-left: max(1rem, env(safe-area-inset-left));
   padding-right: max(1rem, env(safe-area-inset-right));
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
+  flex-direction: column;
   background: var(--bg-glass);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--border-color);
   box-shadow: var(--shadow-sm);
-  gap: 0.75rem;
+}
+
+.page-section {
+  scroll-margin-top: 7.5rem;
 }
 
 .app-title {
@@ -75,7 +78,6 @@
   .app-header {
     padding: 1.25rem 2rem;
     padding-top: max(1.25rem, env(safe-area-inset-top));
-    align-items: center;
   }
 
   .app-title {
@@ -90,9 +92,19 @@
     margin-bottom: 2rem;
   }
 
+  .page-section {
+    scroll-margin-top: 6.5rem;
+  }
+
   .app-footer {
     padding: 1.25rem 1rem;
     font-size: 0.8rem;
+  }
+}
+
+@media (min-width: 900px) {
+  .page-section {
+    scroll-margin-top: 5.5rem;
   }
 }
 

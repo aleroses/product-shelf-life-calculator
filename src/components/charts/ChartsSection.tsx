@@ -42,14 +42,16 @@ export const ChartsSection = () => {
 
   if (state.history.length === 0) {
     return (
-      <GlassCard className="charts-empty">
-        <p>Realiza cálculos para ver las gráficas de estadísticas</p>
-      </GlassCard>
+      <section id="graficas" className="charts-section page-section">
+        <GlassCard className="charts-empty">
+          <p>Realiza cálculos para ver las gráficas de estadísticas</p>
+        </GlassCard>
+      </section>
     );
   }
 
   return (
-    <section className="charts-section">
+    <section id="graficas" className="charts-section page-section">
       <h2 className="section-title">Gráficas y Estadísticas</h2>
       <div className="charts-grid">
         <GlassCard className="chart-card">

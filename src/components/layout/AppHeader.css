@@ -1,3 +1,11 @@
+.app-header__top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+  width: 100%;
+}
+
 .app-header__brand {
   display: flex;
   align-items: center;
@@ -66,6 +74,72 @@
   transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+.app-header__nav--desktop {
+  display: none;
+}
+
+.app-header__nav--mobile {
+  display: flex;
+  gap: 0.5rem;
+  width: 100%;
+  margin-top: 0.75rem;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding-bottom: 0.15rem;
+}
+
+.app-header__nav--mobile::-webkit-scrollbar {
+  display: none;
+}
+
+.app-header__nav-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  flex-shrink: 0;
+  min-height: 40px;
+  padding: 0.45rem 0.8rem;
+  border: 1px solid var(--border-color);
+  border-radius: 999px;
+  background: var(--bg-secondary);
+  color: var(--text-secondary);
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.app-header__nav-chip:hover,
+.app-header__nav-chip:focus-visible {
+  color: var(--accent-primary);
+  border-color: var(--accent-primary);
+  outline: none;
+}
+
+.app-header__nav-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem 0.75rem;
+  border: none;
+  border-radius: var(--radius-md);
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.app-header__nav-link:hover,
+.app-header__nav-link:focus-visible {
+  color: var(--accent-primary);
+  background: rgba(59, 130, 246, 0.1);
+  outline: none;
+}
+
 .app-header__actions {
   display: flex;
   gap: 0.5rem;
@@ -100,6 +174,10 @@
 }
 
 @media (min-width: 768px) {
+  .app-header__top {
+    align-items: center;
+  }
+
   .app-header__avatar {
     width: 3rem;
     height: 3rem;
@@ -118,12 +196,25 @@
     font-size: 0.8rem;
   }
 
-  .header-btn {
-    width: 2.75rem;
-    height: 2.75rem;
-  }
-
   .app-header__actions {
     align-self: center;
+  }
+}
+
+@media (min-width: 900px) {
+  .app-header__nav--mobile {
+    display: none;
+  }
+
+  .app-header__nav--desktop {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    flex-shrink: 0;
+  }
+
+  .app-header__brand {
+    flex: 0 1 auto;
+    max-width: 280px;
   }
 }

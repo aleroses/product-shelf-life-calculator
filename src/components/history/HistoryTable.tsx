@@ -100,7 +100,7 @@ export const HistoryTable = () => {
   };
 
   return (
-    <section className="history-section">
+    <section id="historial" className="history-section page-section">
       <div className="history-header">
         <h2 className="section-title">Historial de Cálculos</h2>
         <div className="history-actions">

@@ -20,7 +20,7 @@ function App() {
         <AnimatedBackground />
         <AppHeader onOpenSettings={() => setSettingsOpen(true)} />
         <main className="app-main">
-          <section className="calculator-section">
+          <section id="calculadora" className="calculator-section page-section">
             <h2 className="section-title">Calculadora</h2>
             <ProductForm />
           </section>

@@ -41,7 +41,7 @@ export const Dashboard = () => {
   const level = getUserLevel(stats.totalCalculations);
 
   return (
-    <section className="dashboard">
+    <section id="estadisticas" className="dashboard page-section">
       <div className="dashboard__grid">
         <StatCard icon={<User size={20} />} label="Nombre" value={user?.name ?? '—'} animate={false} />
         <StatCard
