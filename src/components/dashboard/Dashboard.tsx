@@ -18,10 +18,9 @@ import {
 } from 'lucide-react';
 import { useApp } from '../../hooks/useApp';
 import { computeDashboardStats, formatDateLong } from '../../services/dateService';
-import { getUserLevel, getLevelProgress } from '../../services/levelService';
+import { getUserLevel } from '../../services/levelService';
 import { StatCard } from './StatCard';
 import { ActivityCalendar } from './ActivityCalendar';
-import { GlassCard } from '../ui/GlassCard';
 import './Dashboard.css';
 
 const STATUS_LABELS: Record<string, string> = {
@@ -40,29 +39,10 @@ export const Dashboard = () => {
   );
 
   const level = getUserLevel(stats.totalCalculations);
-  const levelProgress = getLevelProgress(stats.totalCalculations);
 
   return (
     <section className="dashboard">
-      <div className="dashboard__profile-row">
-        <GlassCard className="profile-card" hover={false}>
-          {user?.avatar && (
-            <img src={user.avatar} alt={user.name} className="profile-card__avatar" />
-          )}
-          <div className="profile-card__info">
-            <h2 className="profile-card__name">{user?.name ?? 'Usuario'}</h2>
-            <div className="profile-card__level">
-              <Star size={16} />
-              <span>{level}</span>
-            </div>
-            <div className="profile-card__progress">
-              <div
-                className="profile-card__progress-bar"
-                style={{ width: `${levelProgress}%` }}
-              />
-            </div>
-          </div>
-        </GlassCard>
+      <div className="dashboard__calendar">
         <ActivityCalendar />
       </div>
 

@@ -2,70 +2,14 @@
   margin-bottom: 2rem;
 }
 
-.dashboard__profile-row {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1rem;
+.dashboard__calendar {
   margin-bottom: 1.5rem;
-}
-
-.profile-card {
-  display: flex;
-  align-items: center;
-  gap: 1.25rem;
-  padding: 1.25rem !important;
-}
-
-.profile-card__avatar {
-  width: 4rem;
-  height: 4rem;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 3px solid var(--accent-primary);
-  box-shadow: var(--glow-blue);
-}
-
-.profile-card__name {
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: var(--text-primary);
-}
-
-.profile-card__level {
-  display: flex;
-  align-items: center;
-  gap: 0.35rem;
-  font-size: 0.85rem;
-  color: var(--accent-primary);
-  margin-top: 0.25rem;
-}
-
-.profile-card__progress {
-  width: 100%;
-  height: 6px;
-  background: var(--border-color);
-  border-radius: 3px;
-  margin-top: 0.5rem;
-  overflow: hidden;
-}
-
-.profile-card__progress-bar {
-  height: 100%;
-  background: linear-gradient(90deg, var(--accent-primary), #6366f1);
-  border-radius: 3px;
-  transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .dashboard__grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 1rem;
-}
-
-@media (min-width: 768px) {
-  .dashboard__profile-row {
-    grid-template-columns: 1fr 1.5fr;
-  }
 }
 
 @media (min-width: 1024px) {

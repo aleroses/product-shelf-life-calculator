@@ -1,5 +1,6 @@
-import { Settings, Moon, Sun } from 'lucide-react';
+import { Settings, Moon, Sun, Star } from 'lucide-react';
 import { useApp } from '../../hooks/useApp';
+import { getUserLevel, getLevelProgress } from '../../services/levelService';
 import './AppHeader.css';
 
 interface AppHeaderProps {
@@ -8,6 +9,8 @@ interface AppHeaderProps {
 
 export const AppHeader = ({ onOpenSettings }: AppHeaderProps) => {
   const { state, dispatch } = useApp();
+  const level = getUserLevel(state.stats.totalCalculations);
+  const levelProgress = getLevelProgress(state.stats.totalCalculations);
 
   return (
     <header className="app-header">
@@ -19,10 +22,22 @@ export const AppHeader = ({ onOpenSettings }: AppHeaderProps) => {
             className="app-header__avatar"
           />
         )}
-        <div>
+        <div className="app-header__identity">
           <h1 className="app-title">Control de Vida Útil</h1>
           {state.user && (
-            <p className="app-header__subtitle">{state.user.name}</p>
+            <>
+              <p className="app-header__subtitle">{state.user.name}</p>
+              <div className="app-header__level">
+                <Star size={14} />
+                <span>{level}</span>
+              </div>
+              <div className="app-header__progress">
+                <div
+                  className="app-header__progress-bar"
+                  style={{ width: `${levelProgress}%` }}
+                />
+              </div>
+            </>
           )}
         </div>
       </div>
