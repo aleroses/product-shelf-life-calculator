@@ -1,0 +1,87 @@
+.animated-background {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.15;
+  animation: blobFloat 20s ease-in-out infinite;
+}
+
+.blob-1 {
+  width: 500px;
+  height: 500px;
+  background: var(--accent-primary);
+  top: -10%;
+  left: -5%;
+  animation-delay: 0s;
+}
+
+.blob-2 {
+  width: 400px;
+  height: 400px;
+  background: #6366f1;
+  bottom: -10%;
+  right: -5%;
+  animation-delay: -7s;
+}
+
+.blob-3 {
+  width: 350px;
+  height: 350px;
+  background: #8b5cf6;
+  top: 40%;
+  left: 50%;
+  animation-delay: -14s;
+}
+
+.glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.08;
+}
+
+.glow-1 {
+  width: 600px;
+  height: 300px;
+  background: var(--accent-primary);
+  top: 20%;
+  right: 10%;
+  animation: glowPulse 15s ease-in-out infinite;
+}
+
+.glow-2 {
+  width: 400px;
+  height: 400px;
+  background: #4f46e5;
+  bottom: 20%;
+  left: 15%;
+  animation: glowPulse 18s ease-in-out infinite reverse;
+}
+
+@keyframes blobFloat {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  25% { transform: translate(30px, -40px) scale(1.05); }
+  50% { transform: translate(-20px, 20px) scale(0.95); }
+  75% { transform: translate(15px, 30px) scale(1.02); }
+}
+
+@keyframes glowPulse {
+  0%, 100% { opacity: 0.06; transform: scale(1); }
+  50% { opacity: 0.12; transform: scale(1.1); }
+}
+
+[data-theme='light'] .blob {
+  opacity: 0.08;
+}
+
+[data-theme='light'] .glow {
+  opacity: 0.05;
+}

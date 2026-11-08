@@ -1,0 +1,67 @@
+.activity-calendar__title {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 1rem;
+}
+
+.activity-calendar__grid {
+  display: flex;
+  gap: 3px;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+}
+
+.activity-calendar__week {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.activity-calendar__day {
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+  transition: transform 0.15s ease;
+}
+
+.activity-calendar__day:hover {
+  transform: scale(1.3);
+}
+
+.activity-calendar__day--level-0 {
+  background: var(--border-color);
+}
+
+.activity-calendar__day--level-1 {
+  background: rgba(59, 130, 246, 0.3);
+}
+
+.activity-calendar__day--level-2 {
+  background: rgba(59, 130, 246, 0.5);
+}
+
+.activity-calendar__day--level-3 {
+  background: rgba(59, 130, 246, 0.7);
+}
+
+.activity-calendar__day--level-4 {
+  background: var(--accent-primary);
+  box-shadow: 0 0 6px rgba(59, 130, 246, 0.5);
+}
+
+.activity-calendar__legend {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 0.75rem;
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+}
+
+.activity-calendar__legend .activity-calendar__day {
+  width: 10px;
+  height: 10px;
+}

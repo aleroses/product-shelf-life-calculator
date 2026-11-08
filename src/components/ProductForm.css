@@ -97,6 +97,43 @@
   cursor: not-allowed;
 }
 
+.margin-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.margin-label {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.margin-input {
+  width: 100%;
+  padding: 0.875rem 1rem;
+  font-size: 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  background: var(--bg-glass);
+  color: var(--text-primary);
+  transition: all 0.3s ease;
+}
+
+.margin-input:focus {
+  outline: none;
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.margin-hint {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+}
+
 @media (min-width: 1024px) {
   .product-form-container {
     flex-direction: row;

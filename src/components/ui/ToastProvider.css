@@ -1,0 +1,7 @@
+.toast-custom {
+  background: var(--bg-glass) !important;
+  backdrop-filter: blur(12px) !important;
+  border: 1px solid var(--border-color) !important;
+  color: var(--text-primary) !important;
+  box-shadow: var(--shadow-lg) !important;
+}

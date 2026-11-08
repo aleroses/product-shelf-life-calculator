@@ -1,60 +1,79 @@
-import { createContext, useContext, useReducer, useEffect } from 'react';
+import { createContext, useReducer, useEffect, useRef, useCallback } from 'react';
 import type { ReactNode } from 'react';
 import { appReducer, initialState } from '../reducers/appReducer';
-import { calculateShelfLife } from '../services/dateService';
+import { calculateShelfLife, createHistoryRecord } from '../services/dateService';
+import { resetAll as clearStorage } from '../services/storageService';
 import type { AppState, AppAction } from '../types';
 
 interface AppContextValue {
   state: AppState;
   dispatch: React.Dispatch<AppAction>;
-  recalculate: () => void;
+  recordCalculation: () => void;
+  resetApplication: () => void;
 }
 
-const AppContext = createContext<AppContextValue | undefined>(undefined);
+export const AppContext = createContext<AppContextValue | undefined>(undefined);
 
 export const AppProvider = ({ children }: { children: ReactNode }) => {
   const [state, dispatch] = useReducer(appReducer, initialState);
+  const lastRecordedRef = useRef<string | null>(null);
 
-  // Aplicar tema al cargar
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', state.theme);
   }, [state.theme]);
 
-  // Recalcular cuando cambien las fechas
   useEffect(() => {
-    if (state.dates.elaborationDate && state.dates.expirationDate) {
-      const calculation = calculateShelfLife(state.dates);
-      if (calculation) {
-        dispatch({ type: 'SET_CALCULATION', payload: calculation });
-      } else {
-        dispatch({ type: 'SET_CALCULATION', payload: null });
-      }
+    dispatch({ type: 'INCREMENT_APP_OPENS' });
+  }, []);
+
+  useEffect(() => {
+    const { elaborationDate, expirationDate } = state.dates;
+    if (elaborationDate && expirationDate) {
+      const calculation = calculateShelfLife(
+        state.dates,
+        state.config.lastSafetyMargin
+      );
+      dispatch({ type: 'SET_CALCULATION', payload: calculation });
     } else {
       dispatch({ type: 'SET_CALCULATION', payload: null });
     }
-  }, [state.dates.elaborationDate, state.dates.expirationDate, state.dates.evaluationDate]);
+  }, [
+    state.dates.elaborationDate,
+    state.dates.expirationDate,
+    state.dates.evaluationDate,
+    state.config.lastSafetyMargin,
+  ]);
 
-  const recalculate = () => {
-    if (state.dates.elaborationDate && state.dates.expirationDate) {
-      const calculation = calculateShelfLife(state.dates);
-      if (calculation) {
-        dispatch({ type: 'SET_CALCULATION', payload: calculation });
-      }
-    }
-  };
+  const recordCalculation = useCallback(() => {
+    const { elaborationDate, expirationDate } = state.dates;
+    if (!elaborationDate || !expirationDate) return;
+
+    const calculation = calculateShelfLife(
+      state.dates,
+      state.config.lastSafetyMargin
+    );
+    if (!calculation) return;
+
+    const record = createHistoryRecord(state.dates, calculation);
+    const key = `${record.elaborationDate}-${record.expirationDate}-${record.evaluationDate}-${record.safetyMargin}`;
+
+    if (lastRecordedRef.current === key) return;
+    lastRecordedRef.current = key;
+
+    dispatch({ type: 'RECORD_CALCULATION', payload: { calculation, record } });
+  }, [state.dates, state.config.lastSafetyMargin]);
+
+  const resetApplication = useCallback(() => {
+    clearStorage();
+    lastRecordedRef.current = null;
+    dispatch({ type: 'RESET_ALL' });
+  }, []);
 
   return (
-    <AppContext.Provider value={{ state, dispatch, recalculate }}>
+    <AppContext.Provider
+      value={{ state, dispatch, recordCalculation, resetApplication }}
+    >
       {children}
     </AppContext.Provider>
   );
 };
-
-export const useApp = () => {
-  const context = useContext(AppContext);
-  if (context === undefined) {
-    throw new Error('useApp must be used within an AppProvider');
-  }
-  return context;
-};
-

@@ -1,20 +1,17 @@
-import { useApp } from '../context/AppContext';
+import { Moon, Sun } from 'lucide-react';
+import { useApp } from '../hooks/useApp';
 import './ThemeToggle.css';
 
 export const ThemeToggle = () => {
   const { state, dispatch } = useApp();
 
-  const handleToggle = () => {
-    dispatch({ type: 'TOGGLE_THEME' });
-  };
-
   return (
     <button
       className="theme-toggle"
-      onClick={handleToggle}
+      onClick={() => dispatch({ type: 'TOGGLE_THEME' })}
       aria-label={`Cambiar a modo ${state.theme === 'light' ? 'oscuro' : 'claro'}`}
     >
-      {state.theme === 'light' ? '🌙' : '☀️'}
+      {state.theme === 'light' ? <Moon size={20} /> : <Sun size={20} />}
     </button>
   );
 };
