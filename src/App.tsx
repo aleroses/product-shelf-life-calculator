@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { AppProvider } from './context/AppContext';
 import { AnimatedBackground } from './components/layout/AnimatedBackground';
 import { AppHeader } from './components/layout/AppHeader';
+import { ScrollToTopButton } from './components/layout/ScrollToTopButton';
 import { Dashboard } from './components/dashboard/Dashboard';
 import { ProductForm } from './components/ProductForm';
 import { HistoryTable } from './components/history/HistoryTable';
@@ -31,6 +32,7 @@ function App() {
         <footer className="app-footer">
           <p>Sistema de control de calidad y vida útil de productos</p>
         </footer>
+        <ScrollToTopButton />
         <WelcomeModal />
         <SettingsPanel
           isOpen={settingsOpen}
