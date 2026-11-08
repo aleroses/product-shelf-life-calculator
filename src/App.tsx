@@ -31,6 +31,16 @@ function App() {
         </main>
         <footer className="app-footer">
           <p>Sistema de control de calidad y vida útil de productos</p>
+          <p className="app-footer__credit">
+            Desarrollado por{' '}
+            <a
+              href="https://github.com/aleroses"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Ale Roses
+            </a>
+          </p>
         </footer>
         <ScrollToTopButton />
         <WelcomeModal />
