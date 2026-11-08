@@ -80,7 +80,11 @@ export const HistoryTable = () => {
   };
 
   const handleClearHistory = () => {
-    if (window.confirm('¿Eliminar todo el historial? El perfil de usuario se conservará.')) {
+    if (
+      window.confirm(
+        '¿Eliminar todo el historial? El perfil de usuario se conservará.'
+      )
+    ) {
       dispatch({ type: 'CLEAR_HISTORY' });
       toast.success('Historial eliminado');
     }
@@ -106,7 +110,8 @@ export const HistoryTable = () => {
             disabled={state.history.length === 0}
             title="Exportar CSV"
           >
-            <Download size={16} /> CSV
+            <Download size={16} />
+            <span className="history-btn__label">CSV</span>
           </button>
           <button
             className="history-btn"
@@ -114,7 +119,8 @@ export const HistoryTable = () => {
             disabled={state.history.length === 0}
             title="Exportar Excel"
           >
-            <FileSpreadsheet size={16} /> Excel
+            <FileSpreadsheet size={16} />
+            <span className="history-btn__label">Excel</span>
           </button>
           <button
             className="history-btn"
@@ -122,14 +128,16 @@ export const HistoryTable = () => {
             disabled={state.history.length === 0}
             title="Exportar PDF"
           >
-            <FileText size={16} /> PDF
+            <FileText size={16} />
+            <span className="history-btn__label">PDF</span>
           </button>
           <button
             className="history-btn history-btn--danger"
             onClick={handleClearHistory}
             disabled={state.history.length === 0}
           >
-            <Eraser size={16} /> Limpiar historial
+            <Eraser size={16} />
+            <span className="history-btn__label">Limpiar</span>
           </button>
         </div>
       </div>
@@ -168,70 +176,130 @@ export const HistoryTable = () => {
           <p>No hay registros en el historial</p>
         </GlassCard>
       ) : (
-        <div className="history-table-wrapper">
-          <table className="history-table">
-            <thead>
-              <tr>
-                <th>
-                  <button onClick={() => toggleSort('createdAt')}>
-                    Fecha <ArrowUpDown size={14} />
-                  </button>
-                </th>
-                <th>Elaboración</th>
-                <th>Caducidad</th>
-                <th>
-                  <button onClick={() => toggleSort('totalShelfLife')}>
-                    Total <ArrowUpDown size={14} />
-                  </button>
-                </th>
-                <th>
-                  <button onClick={() => toggleSort('remainingDays')}>
-                    Restantes <ArrowUpDown size={14} />
-                  </button>
-                </th>
-                <th>
-                  <button onClick={() => toggleSort('remainingPercentage')}>
-                    % <ArrowUpDown size={14} />
-                  </button>
-                </th>
-                <th>
-                  <button onClick={() => toggleSort('status')}>
-                    Estado <ArrowUpDown size={14} />
-                  </button>
-                </th>
-                <th>Margen</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              {filtered.map((r) => (
-                <tr key={r.id}>
-                  <td>{formatDate(parseISO(r.createdAt))}</td>
-                  <td>{formatDate(parseISO(r.elaborationDate))}</td>
-                  <td>{formatDate(parseISO(r.expirationDate))}</td>
-                  <td>{r.totalShelfLife}d</td>
-                  <td>{r.remainingDays}d</td>
-                  <td>{r.remainingPercentage}%</td>
-                  <td>
-                    <span className={`history-status history-status--${r.status}`}>
+        <>
+          <div className="history-cards">
+            {filtered.map((r) => (
+              <GlassCard key={r.id} className="history-card" hover={false}>
+                <div className="history-card__top">
+                  <div>
+                    <p className="history-card__date">
+                      {formatDate(parseISO(r.createdAt))}
+                    </p>
+                    <span
+                      className={`history-status history-status--${r.status}`}
+                    >
                       {STATUS_LABELS[r.status]}
                     </span>
-                  </td>
-                  <td>{r.safetyMargin}d</td>
-                  <td>
-                    <button
-                      className="history-delete-btn"
-                      onClick={() => handleDelete(r.id)}
-                      aria-label="Eliminar registro"
-                    >
-                      <Trash2 size={16} />
+                  </div>
+                  <button
+                    className="history-delete-btn"
+                    onClick={() => handleDelete(r.id)}
+                    aria-label="Eliminar registro"
+                  >
+                    <Trash2 size={18} />
+                  </button>
+                </div>
+                <div className="history-card__grid">
+                  <div>
+                    <span className="history-card__label">%</span>
+                    <span className="history-card__value">
+                      {r.remainingPercentage}%
+                    </span>
+                  </div>
+                  <div>
+                    <span className="history-card__label">Restantes</span>
+                    <span className="history-card__value">
+                      {r.remainingDays}d
+                    </span>
+                  </div>
+                  <div>
+                    <span className="history-card__label">Total</span>
+                    <span className="history-card__value">
+                      {r.totalShelfLife}d
+                    </span>
+                  </div>
+                  <div>
+                    <span className="history-card__label">Margen</span>
+                    <span className="history-card__value">
+                      {r.safetyMargin}d
+                    </span>
+                  </div>
+                </div>
+                <p className="history-card__meta">
+                  Elab. {formatDate(parseISO(r.elaborationDate))} · Cad.{' '}
+                  {formatDate(parseISO(r.expirationDate))}
+                </p>
+              </GlassCard>
+            ))}
+          </div>
+
+          <div className="history-table-wrapper">
+            <table className="history-table">
+              <thead>
+                <tr>
+                  <th>
+                    <button onClick={() => toggleSort('createdAt')}>
+                      Fecha <ArrowUpDown size={14} />
                     </button>
-                  </td>
+                  </th>
+                  <th>Elaboración</th>
+                  <th>Caducidad</th>
+                  <th>
+                    <button onClick={() => toggleSort('totalShelfLife')}>
+                      Total <ArrowUpDown size={14} />
+                    </button>
+                  </th>
+                  <th>
+                    <button onClick={() => toggleSort('remainingDays')}>
+                      Restantes <ArrowUpDown size={14} />
+                    </button>
+                  </th>
+                  <th>
+                    <button onClick={() => toggleSort('remainingPercentage')}>
+                      % <ArrowUpDown size={14} />
+                    </button>
+                  </th>
+                  <th>
+                    <button onClick={() => toggleSort('status')}>
+                      Estado <ArrowUpDown size={14} />
+                    </button>
+                  </th>
+                  <th>Margen</th>
+                  <th></th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+              </thead>
+              <tbody>
+                {filtered.map((r) => (
+                  <tr key={r.id}>
+                    <td>{formatDate(parseISO(r.createdAt))}</td>
+                    <td>{formatDate(parseISO(r.elaborationDate))}</td>
+                    <td>{formatDate(parseISO(r.expirationDate))}</td>
+                    <td>{r.totalShelfLife}d</td>
+                    <td>{r.remainingDays}d</td>
+                    <td>{r.remainingPercentage}%</td>
+                    <td>
+                      <span
+                        className={`history-status history-status--${r.status}`}
+                      >
+                        {STATUS_LABELS[r.status]}
+                      </span>
+                    </td>
+                    <td>{r.safetyMargin}d</td>
+                    <td>
+                      <button
+                        className="history-delete-btn"
+                        onClick={() => handleDelete(r.id)}
+                        aria-label="Eliminar registro"
+                      >
+                        <Trash2 size={16} />
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </>
       )}
     </section>
   );

@@ -37,15 +37,24 @@ export const AcceptanceDonut = ({ distribution }: Props) => {
 
   const options = {
     responsive: true,
-    maintainAspectRatio: true,
+    maintainAspectRatio: false,
     cutout: '65%',
     plugins: {
       legend: {
         position: 'bottom' as const,
-        labels: { color: textColor, padding: 16, usePointStyle: true },
+        labels: {
+          color: textColor,
+          padding: 12,
+          boxWidth: 10,
+          usePointStyle: true,
+        },
       },
     },
   };
 
-  return <Doughnut data={data} options={options} />;
+  return (
+    <div className="chart-container">
+      <Doughnut data={data} options={options} />
+    </div>
+  );
 };

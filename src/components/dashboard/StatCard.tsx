@@ -42,5 +42,11 @@ export const StatCard = ({
     </GlassCard>
   );
 
-  return tooltip ? <Tooltip content={tooltip}>{content}</Tooltip> : content;
+  return tooltip ? (
+    <Tooltip content={tooltip} block>
+      {content}
+    </Tooltip>
+  ) : (
+    content
+  );
 };

@@ -35,8 +35,15 @@
 
 .gender-cards {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+}
+
+@media (min-width: 360px) {
+  .gender-cards {
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
 }
 
 .gender-card {

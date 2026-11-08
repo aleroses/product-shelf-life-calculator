@@ -58,7 +58,9 @@ export const ChartsSection = () => {
         </GlassCard>
         <GlassCard className="chart-card">
           <h3 className="chart-card__title">Vida útil promedio</h3>
-          <ShelfLifeGauge percentage={dashStats.approvalRate} />
+          <div className="chart-container chart-container--gauge">
+            <ShelfLifeGauge percentage={dashStats.approvalRate} />
+          </div>
         </GlassCard>
         <GlassCard className="chart-card chart-card--wide">
           <h3 className="chart-card__title">Productos revisados por día</h3>

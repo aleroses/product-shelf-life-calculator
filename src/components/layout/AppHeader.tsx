@@ -27,15 +27,24 @@ export const AppHeader = ({ onOpenSettings }: AppHeaderProps) => {
           {state.user && (
             <>
               <p className="app-header__subtitle">{state.user.name}</p>
-              <div className="app-header__level">
-                <Star size={14} />
-                <span>{level}</span>
-              </div>
-              <div className="app-header__progress">
+              <div className="app-header__meta">
+                <div className="app-header__level">
+                  <Star size={14} aria-hidden />
+                  <span>{level}</span>
+                </div>
                 <div
-                  className="app-header__progress-bar"
-                  style={{ width: `${levelProgress}%` }}
-                />
+                  className="app-header__progress"
+                  role="progressbar"
+                  aria-valuenow={levelProgress}
+                  aria-valuemin={0}
+                  aria-valuemax={100}
+                  aria-label={`Progreso de nivel ${levelProgress}%`}
+                >
+                  <div
+                    className="app-header__progress-bar"
+                    style={{ width: `${levelProgress}%` }}
+                  />
+                </div>
               </div>
             </>
           )}

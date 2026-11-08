@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { getActivityCalendar } from '../../services/dateService';
 import { useApp } from '../../hooks/useApp';
 import { GlassCard } from '../ui/GlassCard';
@@ -7,10 +7,19 @@ import './ActivityCalendar.css';
 
 export const ActivityCalendar = () => {
   const { state } = useApp();
+  const [weeksCount, setWeeksCount] = useState(12);
+
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 479px)');
+    const update = () => setWeeksCount(mq.matches ? 8 : 12);
+    update();
+    mq.addEventListener('change', update);
+    return () => mq.removeEventListener('change', update);
+  }, []);
 
   const days = useMemo(
-    () => getActivityCalendar(state.history, 12),
-    [state.history]
+    () => getActivityCalendar(state.history, weeksCount),
+    [state.history, weeksCount]
   );
 
   const weeks = useMemo(() => {
@@ -34,6 +43,7 @@ export const ActivityCalendar = () => {
               >
                 <div
                   className={`activity-calendar__day activity-calendar__day--level-${day.level}`}
+                  aria-label={`${day.date}: ${day.count} análisis`}
                 />
               </Tooltip>
             ))}

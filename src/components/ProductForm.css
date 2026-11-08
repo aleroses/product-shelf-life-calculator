@@ -11,7 +11,7 @@
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid var(--border-color);
   border-radius: 1.5rem;
-  padding: 2rem;
+  padding: 1.25rem;
   box-shadow: var(--shadow-xl);
   transition: all 0.3s ease;
 }
@@ -34,18 +34,18 @@
 .form-subtitle {
   font-size: 0.875rem;
   color: var(--text-secondary);
-  margin-bottom: 2rem;
+  margin-bottom: 1.25rem;
 }
 
 .form-fields {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1.25rem;
 }
 
 @media (min-width: 640px) {
   .form-card {
-    padding: 2.5rem;
+    padding: 2rem;
   }
 
   .form-title {
@@ -68,6 +68,7 @@
 }
 
 .clear-dates-button {
+  min-height: 44px;
   padding: 0.75rem 1.5rem;
   background: var(--bg-secondary);
   border: 1px solid var(--border-color);
