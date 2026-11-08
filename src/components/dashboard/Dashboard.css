@@ -2,14 +2,15 @@
   margin-bottom: 2rem;
 }
 
-.dashboard__calendar {
-  margin-bottom: 1.5rem;
-}
-
 .dashboard__grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.dashboard__calendar {
+  margin-bottom: 0;
 }
 
 @media (min-width: 1024px) {

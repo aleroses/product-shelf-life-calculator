@@ -42,10 +42,6 @@ export const Dashboard = () => {
 
   return (
     <section className="dashboard">
-      <div className="dashboard__calendar">
-        <ActivityCalendar />
-      </div>
-
       <div className="dashboard__grid">
         <StatCard icon={<User size={20} />} label="Nombre" value={user?.name ?? '—'} animate={false} />
         <StatCard
@@ -153,6 +149,10 @@ export const Dashboard = () => {
           animate={false}
           variant="accent"
         />
+      </div>
+
+      <div className="dashboard__calendar">
+        <ActivityCalendar />
       </div>
     </section>
   );

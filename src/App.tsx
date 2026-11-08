@@ -20,12 +20,12 @@ function App() {
         <AnimatedBackground />
         <AppHeader onOpenSettings={() => setSettingsOpen(true)} />
         <main className="app-main">
-          <Dashboard />
           <section className="calculator-section">
             <h2 className="section-title">Calculadora</h2>
             <ProductForm />
           </section>
           <HistoryTable />
+          <Dashboard />
           <ChartsSection />
         </main>
         <footer className="app-footer">
