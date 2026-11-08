@@ -1,5 +1,33 @@
 .charts-section {
+  position: relative;
   margin-bottom: 2rem;
+  padding: 1.25rem 1rem;
+  border-radius: var(--radius-xl);
+  isolation: isolate;
+}
+
+.charts-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background:
+    radial-gradient(ellipse 70% 55% at 15% 20%, rgba(29, 78, 216, 0.16), transparent 55%),
+    radial-gradient(ellipse 65% 50% at 90% 80%, rgba(15, 118, 110, 0.14), transparent 50%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+[data-theme='dark'] .charts-section::before {
+  background:
+    radial-gradient(ellipse 70% 55% at 15% 20%, rgba(59, 130, 246, 0.18), transparent 55%),
+    radial-gradient(ellipse 65% 50% at 90% 80%, rgba(20, 184, 166, 0.14), transparent 50%);
+}
+
+@media (min-width: 768px) {
+  .charts-section {
+    padding: 1.75rem 1.5rem;
+  }
 }
 
 .charts-grid {
@@ -50,6 +78,8 @@
 
 .gauge-value {
   display: block;
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
   font-size: 1.5rem;
   font-weight: 700;
   color: var(--accent-primary);
@@ -88,8 +118,10 @@
 }
 
 .stats-summary__value {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
   font-size: 1rem;
-  font-weight: 700;
+  font-weight: 600;
   color: var(--text-primary);
   overflow-wrap: anywhere;
 }

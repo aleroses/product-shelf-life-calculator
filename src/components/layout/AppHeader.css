@@ -69,7 +69,7 @@
 
 .app-header__progress-bar {
   height: 100%;
-  background: linear-gradient(90deg, var(--accent-primary), #6366f1);
+  background: var(--accent-gradient);
   border-radius: 2px;
   transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }

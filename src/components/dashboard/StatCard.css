@@ -41,8 +41,8 @@
 }
 
 .stat-card--accent .stat-card__icon {
-  background: rgba(99, 102, 241, 0.15);
-  color: #6366f1;
+  background: rgba(15, 118, 110, 0.15);
+  color: var(--accent-secondary);
 }
 
 .stat-card__content {
@@ -64,8 +64,10 @@
 }
 
 .stat-card__value {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
   font-size: 1.1rem;
-  font-weight: 700;
+  font-weight: 600;
   color: var(--text-primary);
   overflow-wrap: anywhere;
   word-break: break-word;

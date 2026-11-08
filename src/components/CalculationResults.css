@@ -69,8 +69,10 @@
 }
 
 .result-value {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
   font-size: 1.75rem;
-  font-weight: 700;
+  font-weight: 600;
   color: var(--text-primary);
 }
 

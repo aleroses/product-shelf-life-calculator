@@ -79,7 +79,7 @@
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;
-  background: linear-gradient(135deg, var(--accent-primary), #6366f1);
+  background: var(--accent-gradient);
   color: white;
 }
 
