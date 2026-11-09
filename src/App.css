@@ -46,12 +46,12 @@
   scroll-margin-top: 7.5rem;
 }
 
-.app-title {
+.app-brand-name {
   font-family: var(--font-display);
-  font-size: 1rem;
+  font-size: 1.15rem;
   font-weight: 700;
   letter-spacing: -0.03em;
-  line-height: 1.25;
+  line-height: 1.2;
   color: var(--text-primary);
   background: var(--accent-gradient);
   -webkit-background-clip: text;
@@ -117,8 +117,8 @@
     padding-top: max(1.25rem, env(safe-area-inset-top));
   }
 
-  .app-title {
-    font-size: 1.5rem;
+  .app-brand-name {
+    font-size: 1.4rem;
   }
 
   .app-main {

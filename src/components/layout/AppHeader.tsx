@@ -3,6 +3,7 @@ import {
   Moon,
   Sun,
   Star,
+  Shield,
   Calculator,
   History,
   LayoutDashboard,
@@ -37,22 +38,34 @@ export const AppHeader = ({ onOpenSettings }: AppHeaderProps) => {
   return (
     <header className="app-header">
       <div className="app-header__top">
-        <div className="app-header__brand">
-          {state.user?.avatar && (
-            <img
-              src={state.user.avatar}
-              alt="Avatar"
-              className="app-header__avatar"
+        <div className="app-header__leading">
+          <div className="app-header__brand">
+            <Shield
+              className="app-header__brand-icon"
+              size={28}
+              strokeWidth={2}
+              aria-hidden
             />
-          )}
-          <div className="app-header__identity">
-            <h1 className="app-title">Control de Vida Útil</h1>
-            {state.user && (
-              <>
-                <p className="app-header__subtitle">{state.user.name}</p>
+            <div className="app-header__brand-text">
+              <h1 className="app-brand-name">AeroShelf</h1>
+              <p className="app-header__tagline">Control de vida útil</p>
+            </div>
+          </div>
+
+          {state.user && (
+            <div className="app-header__user">
+              {state.user.avatar && (
+                <img
+                  src={state.user.avatar}
+                  alt=""
+                  className="app-header__avatar"
+                />
+              )}
+              <div className="app-header__user-info">
+                <p className="app-header__user-name">{state.user.name}</p>
                 <div className="app-header__meta">
                   <div className="app-header__level">
-                    <Star size={14} aria-hidden />
+                    <Star size={12} aria-hidden />
                     <span>{level}</span>
                   </div>
                   <div
@@ -69,12 +82,15 @@ export const AppHeader = ({ onOpenSettings }: AppHeaderProps) => {
                     />
                   </div>
                 </div>
-              </>
-            )}
-          </div>
+              </div>
+            </div>
+          )}
         </div>
 
-        <nav className="app-header__nav app-header__nav--desktop" aria-label="Secciones">
+        <nav
+          className="app-header__nav app-header__nav--desktop"
+          aria-label="Secciones"
+        >
           {NAV_ITEMS.map(({ id, label, icon: Icon }) => (
             <button
               key={id}
@@ -106,7 +122,10 @@ export const AppHeader = ({ onOpenSettings }: AppHeaderProps) => {
         </div>
       </div>
 
-      <nav className="app-header__nav app-header__nav--mobile" aria-label="Secciones">
+      <nav
+        className="app-header__nav app-header__nav--mobile"
+        aria-label="Secciones"
+      >
         {NAV_ITEMS.map(({ id, label, icon: Icon }) => (
           <button
             key={id}
