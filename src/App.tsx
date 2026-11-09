@@ -30,7 +30,7 @@ function App() {
           <ChartsSection />
         </main>
         <footer className="app-footer">
-          <p>Sistema de control de calidad y vida útil de productos</p>
+          <p>© 2026 AeroShelf — Sistema de Monitoreo y Gestión de Vida Útil de Productos</p>
           <p className="app-footer__credit">
             Desarrollado por{' '}
             <a
