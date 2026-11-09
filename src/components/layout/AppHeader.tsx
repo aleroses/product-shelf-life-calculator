@@ -36,20 +36,21 @@ export const AppHeader = ({ onOpenSettings }: AppHeaderProps) => {
     el.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
 
-  const navButtons = (variant: 'chip' | 'link') =>
-    NAV_ITEMS.map(({ id, label, icon: Icon }) => (
-      <button
-        key={`${variant}-${id}`}
-        type="button"
-        className={
-          variant === 'chip' ? 'app-header__nav-chip' : 'app-header__nav-link'
-        }
-        onClick={() => scrollToSection(id)}
-      >
-        <Icon size={variant === 'chip' ? 14 : 16} aria-hidden />
-        <span>{label}</span>
-      </button>
-    ));
+  const navLinks = (
+    <>
+      {NAV_ITEMS.map(({ id, label, icon: Icon }) => (
+        <button
+          key={id}
+          type="button"
+          className="app-header__nav-link"
+          onClick={() => scrollToSection(id)}
+        >
+          <Icon size={16} aria-hidden />
+          <span>{label}</span>
+        </button>
+      ))}
+    </>
+  );
 
   return (
     <header className="app-header">
@@ -67,18 +68,8 @@ export const AppHeader = ({ onOpenSettings }: AppHeaderProps) => {
           </div>
         </div>
 
-        <nav
-          className="app-header__nav app-header__nav--inline"
-          aria-label="Secciones"
-        >
-          {navButtons('chip')}
-        </nav>
-
-        <nav
-          className="app-header__nav app-header__nav--desktop"
-          aria-label="Secciones"
-        >
-          {navButtons('link')}
+        <nav className="app-header__nav" aria-label="Secciones">
+          {navLinks}
         </nav>
 
         <div className="app-header__end">
